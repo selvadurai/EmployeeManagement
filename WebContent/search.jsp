@@ -72,15 +72,16 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
     <th>First Name</th>
     <th>Last  Name</th>
     <th>Salary   </th>
-    <th>MangerId </th>
   </tr>
   
  <%if (employeeList!=null) {
   for(int i=0; i<employeeList.size();i++ )
   { 
-  Employee employee=employeeList.get(i); %>
+  Employee employee=employeeList.get(i); 
+
+ %>
   <tr>
-     <td><%out.println(employee.getId()); %></td>
+     <td><a href="http://localhost:8080/EmployeeManagement/ControllerActionUpdate?emp=<%out.println(employee.getId()); %>" > <%out.println(employee.getId()); %> <%out.println(employee.getId()); %> </a> </td>
     <td><%out.println(employee.getFirstName()); %></td>
     <td><%out.println(employee.getLastName()); %></td>
     <td><%out.println(employee.getSalary()); %></td>
@@ -93,9 +94,6 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
 
 
 
-
-
-</table>
 
 
 </div>

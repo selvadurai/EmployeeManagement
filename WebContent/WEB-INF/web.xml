@@ -24,8 +24,7 @@
     <servlet-name>AddProjectController</servlet-name>
     <url-pattern>/AddProjectController</url-pattern>
   </servlet-mapping>
-
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>SearchController</display-name>
     <servlet-name>SearchController</servlet-name>
@@ -35,8 +34,32 @@
     <servlet-name>SearchController</servlet-name>
     <url-pattern>/SearchController</url-pattern>
   </servlet-mapping>
-
-
-
-
+  
+  <servlet>
+    <description></description>
+    <display-name>ControllerActionUpdate</display-name>
+    <servlet-name>ControllerActionUpdate</servlet-name>
+    <servlet-class>com.project.controller.ControllerActionUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ControllerActionUpdate</servlet-name>
+    <url-pattern>/ControllerActionUpdate</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>UpdateController</display-name>
+    <servlet-name>UpdateController</servlet-name>
+    <servlet-class>com.project.controller.UpdateController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateController</servlet-name>
+    <url-pattern>/UpdateController</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
 </web-app>

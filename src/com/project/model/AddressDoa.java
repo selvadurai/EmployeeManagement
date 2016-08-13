@@ -15,12 +15,13 @@ public class AddressDoa extends AbstractDoa {
 		try{
 			stmt = conn.createStatement();
         
-        	preparedStatement = conn.prepareStatement("insert into address ( street, city, provience, country,postcode) values ( ?, ?, ?, ?,?)");
-        	preparedStatement.setString( 1 , address.getStreet()    );
-        	preparedStatement.setString( 2 , address.getCity()      );
-        	preparedStatement.setString( 3,  address.getProvience() );
-        	preparedStatement.setString( 4,  address.getCountry()   );
-        	preparedStatement.setString( 5,  address.getPostCode()   );
+        	preparedStatement = conn.prepareStatement("insert into address ( id,street, city, provience, country,postcode) values ( ?,?, ?, ?, ?,?)");
+        	preparedStatement.setInt( 1 , address.getId()   );
+        	preparedStatement.setString( 2 , address.getStreet()    );
+        	preparedStatement.setString( 3 , address.getCity()      );
+        	preparedStatement.setString( 4,  address.getProvience() );
+        	preparedStatement.setString( 5,  address.getCountry()   );
+        	preparedStatement.setString( 6,  address.getPostCode()   );
 	    	preparedStatement.executeUpdate();
 	    	preparedStatement.close();
 		} catch (SQLException e) {
@@ -57,5 +58,28 @@ public class AddressDoa extends AbstractDoa {
    }
 
 
+   
+   public void update(Address address){
+		try{
+			stmt = conn.createStatement();
+        
+        	preparedStatement = conn.prepareStatement("update address SET street=?, city=?, provience=?, country=?,postcode=? where id="+address.getId());
+        	preparedStatement.setString( 1 , address.getStreet()    );
+        	preparedStatement.setString( 2 , address.getCity()      );
+        	preparedStatement.setString( 3,  address.getProvience() );
+        	preparedStatement.setString( 4,  address.getCountry()   );
+        	preparedStatement.setString( 5,  address.getPostCode()   );
+	    	preparedStatement.executeUpdate();
+	    	preparedStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	   
+   }
+   
+   
+   
 
 }

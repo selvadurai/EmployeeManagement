@@ -1,7 +1,7 @@
-<%@ page import="com.project.model.*,java.util.*"  language="java" contentType="text/html; charset=ISO-8859-1"
+<%@page import="com.project.model.*" %>
+<%@page import="java.util.*" %>
+<%@  page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,17 +21,20 @@ integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/
 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
 
+<%  
+    Employee employee =(Employee) request.getAttribute( "employee");
+    Address  address =(Address) request.getAttribute( "address");
+    Phone    phone =(Phone) request.getAttribute( "phone");
+
+ %> 
 
  <%EmployeeDoa empDoa=new EmployeeDoa();
      	    empDoa.open();
      	    List<Employee>emplist=empDoa.CreateEmployeeList();
      	    empDoa.close();%>   
 
-
-
-
-</head>
 
 <body>
 
@@ -50,93 +53,98 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
 
 <div class="container">
 
-<form action="AddEmployeeController" method="GET"  role="form" > 
+<form action="UpdateController" method="GET"  role="form" > 
+
+          <input name="emp" type="hidden" value=<%out.println(employee.getId()); %> > 
+ 
          
          <fieldset class="form-group row"> 
           	<div class="col-sm-3">
              	 	<label "col-sm-1 form-control-label" for="fname"> FirstName: </label>
-             		<input type="text" name="fname" class="form-control" id="fname"/>
+             		<input type="text" value=<%out.println(employee.getFirstName()); %> name="fname" class="form-control" id="fname"/>
              </div>
          </fieldset>
          
          <fieldset class="form-group row">
              <div class="col-sm-3">
      		   <label "col-sm-1 form-control-label" for="lname">LastName:</label>
-     		    <input type="text" name="lname"  class="form-control" id="lname"/>
+     		    <input type="text" name="lname" value=<%out.println(employee.getLastName()); %> class="form-control" id="lname"/>
               </div>
      	 </fieldset>
                 
          <fieldset class="form-group row">
              <div class="col-sm-3">
      		   <label "col-sm-1 form-control-label" for="salary">salary: </label>
-     		    <input type="text" name="salary"  class="form-control" id="salary"/>
+     		    <input type="text" name="salary" value=<%out.println(employee.getSalary()); %> class="form-control" id="salary"/>
               </div>
      	 </fieldset>
 
          <fieldset class="form-group row">
              <div class="col-sm-3">
      		   <label "col-sm-1 form-control-label" for="startDate">startDate: </label>
-     		    <input type="text" name="startDate"  class="form-control" id="startDate"/>
+     		    <input type="text" name="startDate" value=<%out.println(employee.getStartDate()); %>  class="form-control" id="startDate"/>
               </div>
      	 </fieldset>
           
          <fieldset class="form-group row">
              <div class="col-sm-3">
      		   <label "col-sm-1 form-control-label" for="endDate">EndDate: </label>
-     		    <input type="text" name="endDate"  class="form-control" id="endDate"/>
+     		    <input type="text" name="endDate" <%out.println(employee.getEndDate()); %>  class="form-control" id="endDate"/>
               </div>
      	 </fieldset>
     
          <fieldset class="form-group row">
+         
              <div class="col-sm-3">
-     		   <label "col-sm-1 form-control-label" for="category">Project Manager</label>
-     		    <select  type="text" name="leaderId"  class="form-control" id="category"> 
-     		      <% for( int i=0;i<=emplist.size()-1;i++ ){
+     		   <label "col-sm-1 form-control-label" for="leaderId">Project Manager</label>
+     		    <select  type="text" value=<%out.println(employee.getManagerId()); %> name="leaderId"  class="form-control" id="LeaderId"> 
+     		        <% for( int i=0;i<=emplist.size()-1;i++ ){
      		         Employee emp=emplist.get(i);%>
      		        <option value=<%out.println(emp.getId()); %> > <% out.println(emp.getLastName()); %></option>
    				   
    				  <%} %>
+     		       
+     		       
+     		       
+     		       
      		    </select>
               </div>
-     	 </fieldset>   
-         
-         
-         
+     	 </fieldset> 
 
 
 
        <fieldset class="form-group row">
               <div class="col-sm-3">
      		     <label "col-sm-1 form-control-label" for="street">street: </label>
-     		     <input type="text" name="street"  class="form-control" id="street"/>
+     		     <input type="text" name="street" value=<%out.println(address.getStreet()); %>   class="form-control" id="street"/>
               </div>
      	 </fieldset>
 
          <fieldset class="form-group row">
               <div class="col-sm-3">
      		     <label "col-sm-1 form-control-label" for="city">city: </label>
-     		     <input type="text" name="city"  class="form-control" id="city"/>
+     		     <input type="text" name="city" value=<%out.println(address.getCity()); %> class="form-control" id="city"/>
               </div>
      	 </fieldset>
  
           <fieldset class="form-group row">
               <div class="col-sm-3">
      		     <label "col-sm-1 form-control-label" for="provience"> provience: </label>
-     		     <input type="text" name="provience"  class="form-control" id=" provience"/>
+     		     <input type="text" name="provience" value=<%out.println(address.getProvience()); %>  class="form-control" id=" provience"/>
               </div>
      	 </fieldset>      
     
            <fieldset class="form-group row">
               <div class="col-sm-3">
      		     <label "col-sm-1 form-control-label" for="country"> country: </label>
-     		     <input type="text" name="country"  class="form-control" id="country"/>
+     		     <input type="text" name="country" value=<%out.println(address.getCountry()); %> class="form-control" id="country"/>
               </div>
      	 </fieldset>  
      	 
      	 <fieldset class="form-group row">
               <div class="col-sm-3">
      		     <label "col-sm-1 form-control-label" for="postcode"> postcode: </label>
-     		     <input type="text" name="postcode"  class="form-control" id="postcode"/>
+     		     <input type="text" name="postcode" value=<%out.println(address.getPostCode()); %>   class="form-control" id="postcode"/>
               </div>
      	 </fieldset> 
      	 
@@ -144,7 +152,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
          
              <div class="col-sm-3">
      		   <label "col-sm-1 form-control-label" for="ptype">Phone Type</label>
-     		    <select  type="text" name="ptype"  class="form-control" id="ptype"> 
+     		    <select  type="text" name="ptype" value=<%out.println(phone.getType()); %> class="form-control" id="ptype"> 
      		        <option value="cellphone">landline</option>
    				    <option value="landline">cellphone</option>
      		    </select>
@@ -154,7 +162,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
      	  <fieldset class="form-group row">
               <div class="col-sm-3">
      		     <label "col-sm-1 form-control-label" for="areacode"> area code: </label>
-     		     <input type="text" name="areacode"  class="form-control" id="areacode"/>
+     		     <input type="text" name="arecode" value=<%out.println(phone.getAreaCode()); %>class="form-control" id="areacode"/>
               </div>
      	 </fieldset> 
      	 
@@ -162,7 +170,7 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
      	 <fieldset class="form-group row">
               <div class="col-sm-3">
      		     <label "col-sm-1 form-control-label" for="phonenumber"> phone number </label>
-     		     <input type="text" name="phonenumber"  class="form-control" id="phonenumber"/>
+     		     <input type="text" name="phonenumber" value=<%out.println(phone.getPhoneNumber()); %> class="form-control" id="phonenumber"/>
               </div>
      	 </fieldset> 
  
@@ -181,4 +189,3 @@ integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7T
 
 </body>
 </html>
-

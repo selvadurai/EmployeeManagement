@@ -14,11 +14,12 @@ public void add(Phone phone){
 		try{
 			stmt = conn.createStatement();
         
-        	preparedStatement = conn.prepareStatement("insert into phone (type,phonenumer, areaCode, ownerId) values ( ?, ?, ?, ?)");
-        	preparedStatement.setString( 1 , phone.getType()             );
-        	preparedStatement.setString( 2 , phone.getPhoneNumber()      );
-        	preparedStatement.setString( 3 , phone.getAreaCode()         );
-        	preparedStatement.setInt   (4 , phone.getOwnerId()           );
+        	preparedStatement = conn.prepareStatement("insert into phone (id,type,phonenumer, areaCode, ownerID) values ( ?,?,?,?,?)");
+        	preparedStatement.setInt(   1     , phone.getId()             );
+        	preparedStatement.setString( 2 , phone.getType()             );
+        	preparedStatement.setString( 3 , phone.getPhoneNumber()      );
+        	preparedStatement.setString( 4 , phone.getAreaCode()         );
+        	preparedStatement.setInt   (5 , phone.getOwnerId()           );
 	    	preparedStatement.executeUpdate();
 	    	preparedStatement.close();
 		} catch (SQLException e) {
@@ -54,6 +55,35 @@ public List<Phone> CreatePhoneList() throws SQLException{
 	    return phoneList;
 	   
 }
+
+
+
+public void update(Phone phone){
+	
+	
+	try{
+		stmt = conn.createStatement();
+    
+    	preparedStatement = conn.prepareStatement("Update phone SET type=?,phonenumer=?, areaCode=?, ownerId=? where id="+phone.getId());
+    	preparedStatement.setString( 1 , phone.getType()             );
+    	preparedStatement.setString( 2 , phone.getPhoneNumber()      );
+    	preparedStatement.setString( 3 , phone.getAreaCode()         );
+    	preparedStatement.setInt   (4 , phone.getOwnerId()           );
+    	preparedStatement.executeUpdate();
+    	preparedStatement.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	
+	
+}
+
+
+
+
+
 
 
 

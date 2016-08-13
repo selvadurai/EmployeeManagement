@@ -12,14 +12,15 @@ public void add(Employee employee){
 		try{
 			stmt = conn.createStatement();
         
-        	preparedStatement = conn.prepareStatement("insert into employee ( firstName, lastName, salary, startDate,endDate,mangerId,addressedId) values ( ?, ?, ?, ?,?,?,?)");
-        	preparedStatement.setString( 1 , employee.getFirstName()     );
-        	preparedStatement.setString( 2 , employee.getLastName()      );
-        	preparedStatement.setDouble( 3,  employee.getSalary()        );
-        	preparedStatement.setString( 4,  employee.getStartDate()     );
-        	preparedStatement.setString( 5,  employee.getEndDate()       );
-        	preparedStatement.setInt   ( 6,  employee.getManagerId()     );
-        	preparedStatement.setInt   ( 7,  employee.getAdressId()      );
+        	preparedStatement = conn.prepareStatement("insert into employee ( id,firstName, lastName, salary, startDate,endDate,mangerId,addressedId) values ( ?,?, ?, ?, ?,?,?,?)");
+        	preparedStatement.setInt( 1 , employee.getId()           );
+        	preparedStatement.setString( 2 , employee.getFirstName()     );
+        	preparedStatement.setString( 3 , employee.getLastName()      );
+        	preparedStatement.setDouble( 4,  employee.getSalary()        );
+        	preparedStatement.setString( 5,  employee.getStartDate()     );
+        	preparedStatement.setString( 6,  employee.getEndDate()       );
+        	preparedStatement.setInt   ( 7,  employee.getManagerId()     );
+        	preparedStatement.setInt   ( 8,  employee.getAdressId()      );
         	
 	    	preparedStatement.executeUpdate();
 	    	preparedStatement.close();
@@ -56,6 +57,36 @@ public List<Employee> CreateEmployeeList() throws SQLException{
 	    return employeeList;
 	   
 }
+
+
+
+public void  update(Employee employee){
+	
+	try{
+		stmt = conn.createStatement();
+    
+    	preparedStatement = conn.prepareStatement("UPDATE employee SET firstName=?, lastName=?, salary=?, startDate=?,endDate=?,mangerId=?,addressedId=? where id="+employee.getId());
+    	preparedStatement.setString( 1 , employee.getFirstName()     );
+    	preparedStatement.setString( 2 , employee.getLastName()      );
+    	preparedStatement.setDouble( 3,  employee.getSalary()        );
+    	preparedStatement.setString( 4,  employee.getStartDate()     );
+    	preparedStatement.setString( 5,  employee.getEndDate()       );
+    	preparedStatement.setInt   ( 6,  employee.getManagerId()     );
+    	preparedStatement.setInt   ( 7,  employee.getAdressId()      );
+    	
+    	preparedStatement.executeUpdate();
+    	preparedStatement.close();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+}
+
+
+
+
+
 
 	
 }

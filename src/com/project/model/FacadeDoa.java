@@ -10,26 +10,16 @@ public boolean addEmployee(Employee employee, Address address,Phone phone){
 	try{
 	AddressDoa addressDoa = new AddressDoa();
     addressDoa.open();
-    List<Address> addressList=null;
-  
-    
     addressDoa.add(address);
-    try {
-  		addressList=addressDoa.CreateAddressList();
-  	} catch (SQLException e) {
-  		// TODO Auto-generated catch block
-  		e.printStackTrace();
-  	}
     addressDoa.close();
     
-    employee.SetAddressId(addressList.size());
+    
     
     EmployeeDoa employeeDoa = new EmployeeDoa();
     employeeDoa.open();
     employeeDoa.add(employee);
     employeeDoa.close();
     
-    phone.SetOwnerId(addressList.size());
     
     PhoneDoa phoneDoa = new PhoneDoa();
     phoneDoa.open();
@@ -68,6 +58,29 @@ public void addEmployeeToProject(String [] employees,int project_num) throws SQL
 	
     projectEmployeeDoa.close();
 }
+
+
+
+
+public void updateEmployee(Phone phone,Address address, Employee employee){
+	AddressDoa addressDoa = new AddressDoa();
+    addressDoa.open();
+    addressDoa.update(address);
+    addressDoa.close();
+    
+    EmployeeDoa employeeDoa = new EmployeeDoa();
+    employeeDoa.open();
+    employeeDoa.update(employee);
+    employeeDoa.close();
+    
+    PhoneDoa phoneDoa = new PhoneDoa();
+    phoneDoa.open();
+    phoneDoa.update(phone);
+    phoneDoa.close();
+    
+	
+}
+
 
 
 }
